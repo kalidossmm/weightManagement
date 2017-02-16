@@ -12,7 +12,7 @@ Summary:
 -   Weights
 
 Description: 
--   To retrive the weight(s) information. By Default it will give last 10 days of data. (Which is configurable).
+-   To retrive the weight(s) information. By Default it will give last 10 days of data. (Which is configurable). Schema reference [here](schema/weightGet.json)
 
 Parameters:
 
@@ -67,7 +67,7 @@ Summary:
 -   Add Weights
 
 Description: 
--   To store the weight(s) information. Since the weight can be collected from the machine(ble connection) and can send batch of weights too, So this api accept array of weights.
+-   To store the weight(s) information. Since the weight can be collected from the machine(ble connection) and can send batch of weights too, So this api accept array of weights. Schema reference [here](schema/weightPost.json)
 
 Parameters:
 
