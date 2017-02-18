@@ -1,6 +1,6 @@
 module.exports = {
 	routes: {
-		weightsGet: "/:version/users/:userId/weights",
-		weightsPost: "/:version/users/:userId/weights",
+		weightsGet: "/users/:userId/weights",
+		weightsPost: "/users/:userId/weights",
 	}
 }
