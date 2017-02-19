@@ -115,6 +115,7 @@ if (argv.port && parseInt(argv.port, 10)) {
     port = argv.port;
 }
 
+require('./src/routes')(server);
 
 
 server.on('listening', function onServerStartUp() {

@@ -1,7 +1,15 @@
-export.getData = function(query){
-	return {'OK'};
+
+var hashTableHandler = {},
+    Q = require("q");
+
+
+
+hashTableHandler.getData = function(query){
+    return query;
 };
 
-export.postData = function(data){
-	return {'OK'};
+hashTableHandler.postData = function(data){
+	return data;
 };
+
+exports.hashTableHandler = hashTableHandler;

@@ -1,11 +1,24 @@
+var weightManagement = require('../models/some').weightManagement,
+    restify = require('restify'),
+    logger = require('../logger');
+
+var errorHandler = function (method, res, next) {
+    return function (error) {
+        logger.error({err: error, method: method}, 'Error in [timeseries_resource]');
+        // TODO: in production, change this to some generic error
+        next(new restify.InternalError({
+            message: error.message
+        }));
+    };
+};
 
 exports.getWeightData = function (req, res, next) {
     var params = {
         userId: req.params.userId
     };
     logger.debug('WeightManagement request parameters >> [weight_resource] >> [getWeightData]',
-        params);
-    commonDB.getWeightDataQ(params)
+        params);    
+    weightManagement.getWeightDataQ(params)
         .then(function (data) {
             return (data && data.results) ? res.send(200, data) :
                 res.send(new restify.ResourceNotFoundError());
@@ -19,7 +32,7 @@ exports.postWeightData = function (req, res, next) {
     };
     logger.debug('WeightManagement request parameters >> [weight_resource] >> [postWeightData]',
         params);
-    commonDB.postWeightDataQ(params)
+    weightManagement.postWeightDataQ(params)
         .then(function (data) {
             return (data && data.results) ? res.send(200, data) :
                 res.send(new restify.ResourceNotFoundError());
@@ -27,3 +40,4 @@ exports.postWeightData = function (req, res, next) {
         .fail(errorHandler("getWeightData", res, next));
 };
 
+    

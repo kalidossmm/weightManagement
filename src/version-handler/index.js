@@ -5,10 +5,9 @@ var path = require('path'),
         'get': {},
         'post': {}
     };
+routeHandlersMap.get[config.routes.weightsGet] = weightResource.getWeightData;
+routeHandlersMap.post[config.routes.weightsPost] = weightResource.postWeightData;
 
-routeHandlersMap.delete[config.routes.weightsGet] = weightResource.getWeightData;
-routeHandlersMap.get[config.routes.weightsPost] = weightResource.postWeightData;
-
-module.exports = {
+module.exports = function (req, res, next) {
     routeHandlersMap[req.route.method.toLowerCase()][req.route.path](req, res, next);
 }
