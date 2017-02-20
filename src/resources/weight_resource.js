@@ -1,4 +1,4 @@
-var weightManagement = require('../models/some').weightManagement,
+var weightManagement = require('../models/index').weightManagement,
     restify = require('restify'),
     logger = require('../logger');
 
@@ -17,9 +17,11 @@ exports.getWeightData = function (req, res, next) {
         userId: req.params.userId
     };
     logger.debug('WeightManagement request parameters >> [weight_resource] >> [getWeightData]',
-        params);    
+        params);  
+        logger.debug(weightManagement.getWeightDataQ(params));  
     weightManagement.getWeightDataQ(params)
-        .then(function (data) {
+        .then(function () {
+ var data = "OK";
             return (data && data.results) ? res.send(200, data) :
                 res.send(new restify.ResourceNotFoundError());
         })
@@ -33,7 +35,8 @@ exports.postWeightData = function (req, res, next) {
     logger.debug('WeightManagement request parameters >> [weight_resource] >> [postWeightData]',
         params);
     weightManagement.postWeightDataQ(params)
-        .then(function (data) {
+        .then(function() {
+            data = "okok";
             return (data && data.results) ? res.send(200, data) :
                 res.send(new restify.ResourceNotFoundError());
         })

@@ -12,4 +12,4 @@ hashTableHandler.postData = function(data){
 	return data;
 };
 
-exports.hashTableHandler = hashTableHandler;
+exports.dbHandler = hashTableHandler;
