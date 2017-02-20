@@ -20,9 +20,8 @@ exports.getWeightData = function (req, res, next) {
         params);  
         logger.debug(weightManagement.getWeightDataQ(params));  
     weightManagement.getWeightDataQ(params)
-        .then(function () {
- var data = "OK";
-            return (data && data.results) ? res.send(200, data) :
+        .then(function (data) {
+            return (data) ? res.send(200, data) :
                 res.send(new restify.ResourceNotFoundError());
         })
         .fail(errorHandler("getWeightData", res, next));
@@ -35,9 +34,8 @@ exports.postWeightData = function (req, res, next) {
     logger.debug('WeightManagement request parameters >> [weight_resource] >> [postWeightData]',
         params);
     weightManagement.postWeightDataQ(params)
-        .then(function() {
-            data = "okok";
-            return (data && data.results) ? res.send(200, data) :
+        .then(function(data) {
+            return (data) ? res.send(200, data.result) :
                 res.send(new restify.ResourceNotFoundError());
         })
         .fail(errorHandler("getWeightData", res, next));

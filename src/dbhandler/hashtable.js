@@ -5,11 +5,11 @@ var hashTableHandler = {},
 
 
 hashTableHandler.getData = function(query){
-    return query;
+    return Q.resolve(query);
 };
 
 hashTableHandler.postData = function(data){
-	return data;
+	    return Q.resolve(data);
 };
 
 exports.dbHandler = hashTableHandler;
