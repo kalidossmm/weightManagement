@@ -1,7 +1,7 @@
 var config = require('../../config'),
     path = require('path'),
-        versionHandler = require('../version-handler'),
-    entitlementHandler = require("../entitlement_handler");
+        versionHandler = require('../version'),
+    entitlementHandler = require("../entitlement");
 
 
 
