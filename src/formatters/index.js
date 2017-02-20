@@ -50,7 +50,7 @@ exports.formatHTMLReponse = function formatText(req, res, body, cb) {
 
     body = body.toString();
     res.setHeader('Content-Length', Buffer.byteLength(body));
-    setRequestIdHeader(res);
+    //setRequestIdHeader(res);
     return cb(null, body);
 };
 

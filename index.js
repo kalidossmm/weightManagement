@@ -7,8 +7,7 @@ var path = require('path'),
     _ = require('lodash'),
     helmet = require('helmet'),
     serverStartUpEvent = require('./src/events/server_startup_event'),
-    argv = require('yargs').argv,
-    commonValidationChain = require('./src/validation_chain');
+    argv = require('yargs').argv;
  
 //Create a server with our logger and custom formatter
 //Note that 'version' means all routes will default to
@@ -116,14 +115,17 @@ if (argv.port && parseInt(argv.port, 10)) {
     port = argv.port;
 }
 
-    server.on('listening', function onServerStartUp() {
-        serverStartUpEvent.emit('serverStarted');
-        var consoleMessage = '\n \n %s Service is listening at %s';
-        logger.info(consoleMessage, server.name, server.url);
-    });
+require('./src/routes')(server);
 
-    server.on('error', function onServerError(ex) {
-        logger.fatal({err: ex}, 'Server encountered error');
-        serverStartUpEvent.emit('serverError', ex);
-    });
-    server.listen(port);
+
+server.on('listening', function onServerStartUp() {
+    serverStartUpEvent.emit('serverStarted');
+    var consoleMessage = '\n \n %s Service is listening at %s';
+    logger.info(consoleMessage, server.name, server.url);
+});
+
+server.on('error', function onServerError(ex) {
+    logger.fatal({err: ex}, 'Server encountered error');
+    serverStartUpEvent.emit('serverError', ex);
+});
+server.listen(port);
